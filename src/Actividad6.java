@@ -42,7 +42,7 @@ class Aspirante{
 	
 	@Override
 	public String toString() {
-		return "Aspirante [folio=" + folio + ", nombre=" + nombre + ", edad=" + edad + ", redesSociales="
+		return "Aspirante [Folio: " + folio + ", Nombre: " + nombre + ", Edad: " + edad + ", Redes Sociales: "
 				+ Arrays.toString(redesSociales) + "]";
 	}
 	
@@ -51,12 +51,10 @@ class Aspirante{
 
 
 class RegistroAspirantes{
+	static Scanner entrada = new Scanner(System.in);
 	ArrayList listaAspirantes;
 	private int numFolio = 1;
-	static Scanner entrada = new Scanner(System.in);
 	
-
-
 	public int getnumFolio() {
 		return numFolio;
 	}
@@ -65,25 +63,25 @@ class RegistroAspirantes{
 		this.numFolio = numFolio;
 	}
 
-	public static int validacionNatural() {
-		int ret = 0;
-		boolean err = false;
+	public static int validacion() {
+		int r = 0;
+		boolean error = false;
 		do {
 			try {
-				ret = entrada.nextInt();
+				r = entrada.nextInt();
 			} catch (java.util.InputMismatchException e) {
-				System.out.println("entrada no valida, intente de nuevo:");
+				System.out.println("error, intente de nuevo:");
 				entrada.nextLine();
-				err=true;
+				error=true;
 			}
-			if (ret>0) {
-				err=false;
+			if (r>0) {
+				error=false;
 			}else {
-				System.out.println("solo números naturales");
-				err=true;
+				System.out.println("Ingrese unicamente números naturales");
+				error=true;
 			}
-		}while(err);
-		return ret;
+		}while(error);
+		return r;
 	}
 	
 	
@@ -130,13 +128,13 @@ public class Actividad6 {
 			System.out.println("3- Mostrar Aspirantes");
 			System.out.println("4- Salir del menú");
 			
-			opcion = RegistroAspirantes.validacionNatural();
+			opcion = RegistroAspirantes.validacion();
 			switch(opcion) {
 		case 1: String redesSoc[] = new String[4];
 			System.out.println("Ingrese su nombre:");
 			nombre = entrada.nextLine();
 			System.out.println("Ingrese su edad: ");
-			edad = RegistroAspirantes.validacionNatural();
+			edad = RegistroAspirantes.validacion();
 			System.out.println("Instagram: ");
 			redesSoc[0] = entrada.nextLine();
 			System.out.println("Facebook: ");
@@ -164,8 +162,6 @@ public class Actividad6 {
 			
 			}
 		}while(opcion != 4);
-		
-		System.out.println("Tamaño de la lista: " + regAsp.listaAspirantes.size());
 
 	}
 
